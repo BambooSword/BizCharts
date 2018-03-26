@@ -5,7 +5,6 @@ import Stacked from './stacked';
 
 
 export default class AreaChart extends Component {
-  
   render() {
     return (
       <div className='Area-charts'>
