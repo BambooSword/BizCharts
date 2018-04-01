@@ -12,12 +12,13 @@ class BaseComponent extends Component {
   }
 
   static childContextTypes = {
-    addElement: PropTypes.func,
-    updateElement: PropTypes.func,
-    deleteElement: PropTypes.func,
-    createId: PropTypes.func,
+    // 多余定义
+    // addElement: PropTypes.func,
+    // updateElement: PropTypes.func,
+    // deleteElement: PropTypes.func,
+    // createId: PropTypes.func,
     getParentInfo: PropTypes.func,
-    getViewId: PropTypes.func,
+    // getViewId: PropTypes.func,
   }
 
   constructor(props, name) {
@@ -27,12 +28,12 @@ class BaseComponent extends Component {
 
   getChildContext() {
     return {
-      addElement: this.context.addElement,
-      updateElement: this.context.updateElement,
-      deleteElement: this.context.deleteElement,
-      createId: this.context.createId,
+      // addElement: this.context.addElement,
+      // updateElement: this.context.updateElement,
+      // deleteElement: this.context.deleteElement,
+      // createId: this.context.createId,
       getParentInfo: this.getParentInfo,
-      getViewId: this.context.getViewId,
+      // getViewId: this.context.getViewId,
     };
   }
 
@@ -82,38 +83,39 @@ class BaseComponent extends Component {
 
 function generateBaseTypedComponent(name) {
   class TypedComponent extends BaseComponent {
-    static contextTypes = {
-      addElement: PropTypes.func,
-      updateElement: PropTypes.func,
-      deleteElement: PropTypes.func,
-      createId: PropTypes.func,
-      getParentInfo: PropTypes.func,
-      getViewId: PropTypes.func,
-    }
-
-    static childContextTypes = {
-      addElement: PropTypes.func,
-      updateElement: PropTypes.func,
-      deleteElement: PropTypes.func,
-      createId: PropTypes.func,
-      getParentInfo: PropTypes.func,
-      getViewId: PropTypes.func,
-    }
+    // 原型链继承重复
+    // static contextTypes = {
+    //   addElement: PropTypes.func,
+    //   updateElement: PropTypes.func,
+    //   deleteElement: PropTypes.func,
+    //   createId: PropTypes.func,
+    //   getParentInfo: PropTypes.func,
+    //   getViewId: PropTypes.func,
+    // }
+    // Base已经有我们所需的所有context， 重复
+    // static childContextTypes = {
+    //   addElement: PropTypes.func,
+    //   updateElement: PropTypes.func,
+    //   deleteElement: PropTypes.func,
+    //   createId: PropTypes.func,
+    //   getParentInfo: PropTypes.func,
+    //   getViewId: PropTypes.func,
+    // }
 
     constructor(props) {
       super(props, name);
     }
 
-    getChildContext() {
-      return {
-        addElement: this.context.addElement,
-        updateElement: this.context.updateElement,
-        deleteElement: this.context.deleteElement,
-        createId: this.context.createId,
-        getParentInfo: this.getParentInfo,
-        getViewId: this.context.getViewId,
-      };
-    }
+    // getChildContext() {
+    //   return {
+    //     addElement: this.context.addElement,
+    //     updateElement: this.context.updateElement,
+    //     deleteElement: this.context.deleteElement,
+    //     createId: this.context.createId,
+    //     getParentInfo: this.getParentInfo,
+    //     getViewId: this.context.getViewId,
+    //   };
+    // }
   }
 
   return TypedComponent;

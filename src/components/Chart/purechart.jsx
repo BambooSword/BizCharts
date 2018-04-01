@@ -99,15 +99,18 @@ export default class PureChart extends Component {
   }
 
   addElement = (name, id, props, parentInfo, viewId) => {
-    return this.g2Processor.addElement(name, id, props, parentInfo, viewId);
+    // return 值不需要，去掉
+    // return this.g2Processor.addElement(name, id, props, parentInfo, viewId);
+    this.g2Processor.addElement(name, id, props, parentInfo, viewId);
   }
 
-  updateElement = (name, id, props, parentInfo, viewId) => {
-    this.g2Processor.updateElement(name, id, props, parentInfo, viewId);
+  // 去除用不到的参数 parentInfo, viewId
+  updateElement = (name, id, props) => {
+    this.g2Processor.updateElement(name, id, props);
   }
-
-  deleteElement = (name, id, parentInfo) => {
-    this.g2Processor.deleteElement(name, id, parentInfo);
+  // 去除用不到的参数 parentInfo
+  deleteElement = (name, id) => {
+    this.g2Processor.deleteElement(name, id);
   }
 
   notifyG2Instance() {
@@ -116,15 +119,11 @@ export default class PureChart extends Component {
     }
   }
 
-  refHandle = (cw) => {
-    // chart container wrap for reset operation
-    if (!this.containerWrap) {
-      this.containerWrap = cw;
-    }
-  }
 
   render() {
-    return <div ref={this.refHandle}>{this.props.children}</div>;
+    return (<div
+      ref={(cw) => { if (!this.containerWrap) { this.containerWrap = cw; } }}
+    >{this.props.children}</div>);
   }
-};
+}
 

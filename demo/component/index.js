@@ -18,6 +18,7 @@ export default {
   lineChart: {
     Line,
     Bar,
+    Empty,
     Area,
     Point,
     Pie,

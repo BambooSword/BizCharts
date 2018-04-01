@@ -68,9 +68,11 @@ export default class Processor {
 
   createG2Instance() {
     const config = this.config;
-    const chart = g2Creator.createChart(config, this.elementInfos);
-    g2Creator.executeChartConfig(chart, config, this.elementInfos);
-    g2Creator.synchronizeG2Add(chart, config, this.elementInfos);
+    // 去除多余参数
+    // const chart = g2Creator.createChart(config, this.elementInfos);
+    const chart = g2Creator.createChart(config);
+    g2Creator.executeChartConfig(chart, config);
+    g2Creator.synchronizeG2Add(chart, config);
 
     chart.render();
 
@@ -99,10 +101,11 @@ export default class Processor {
   }
 
   reExecuteChart() {
+    // 去除多余参数
     this.chart.clear();
     configMerge.merge(this.config, this.deleteInfos, this.elementInfos, true);
-    g2Creator.executeChartConfig(this.chart, this.config, this.elementInfos);
-    g2Creator.synchronizeG2Add(this.chart, this.config, this.elementInfos);
+    g2Creator.executeChartConfig(this.chart, this.config);
+    g2Creator.synchronizeG2Add(this.chart, this.config);
     this.chart.repaint();
     this.resetStates();
     return this.chart;

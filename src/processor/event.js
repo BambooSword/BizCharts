@@ -173,27 +173,27 @@ function updateEvents(chart, EVENTS = {}, props, nextProps) {
 function updateBaseEvents(chart, props, nextProps) {
   updateEvents(chart, baseEvents, props, nextProps);
 }
+// 这个函数好像没用过，根据我读的逻辑，目前也不需要这个函数了
+// function unbindEvents(chart, EVENTS = {}, props) {
+//   Util.each(EVENTS, (key) => {
+//     const { prop, event } = key;
+//     const fns = props[prop];
 
-function unbindEvents(chart, EVENTS = {}, props) {
-  Util.each(EVENTS, (key) => {
-    const { prop, event } = key;
-    const fns = props[prop];
+//     if (Util.isFunction(fns)) {
+//       chart.off(event, fns);
+//     } else if (Util.isObject(fns)) {
+//       for (const name in fns) {
+//         if (Object.prototype.hasOwnProperty.call(fns, name)) {
+//           chart.off(`${name}:${event}`, fns[name]);
+//         }
+//       }
+//     }
+//   });
+// }
 
-    if (Util.isFunction(fns)) {
-      chart.off(event, fns);
-    } else if (Util.isObject(fns)) {
-      for (const name in fns) {
-        if (Object.prototype.hasOwnProperty.call(fns, name)) {
-          chart.off(`${name}:${event}`, fns[name]);
-        }
-      }
-    }
-  });
-}
-
-function unbindBaseEvents(chart, props) {
-  unbindEvents(chart, baseEvents, props);
-}
+// function unbindBaseEvents(chart, props) {
+//   unbindEvents(chart, baseEvents, props);
+// }
 
 export default {
   baseEventObjectTypes,
@@ -204,7 +204,7 @@ export default {
   bindBaseEvents,
   updateEvents,
   updateBaseEvents,
-  unbindEvents,
-  unbindBaseEvents,
+  // unbindEvents,
+  // unbindBaseEvents,
   chartEvents,
 };

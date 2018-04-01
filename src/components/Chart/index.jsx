@@ -24,11 +24,6 @@ export default class Chart extends (React.PureComponent || React.Component) {
     return this.chart;
   }
 
-  _refCallback = (c) => {
-    if (c) {
-      this.chart = c.getG2Instance();
-    }
-  }
   hasViewSource = () => {
     let hasViewSource = false;
     React.Children.map(this.props.children, (child) => {
@@ -42,12 +37,19 @@ export default class Chart extends (React.PureComponent || React.Component) {
     const { data, width, height, placeholder, className, style } = this.props;
     return (<div className={className} style={style}>
       {
-        (hasSource(data) || this.hasViewSource() || !(placeholder === true)) ?
-          <PureChart ref={this._refCallback} {...this.props} /> :
+        (hasSource(data) || this.hasViewSource()) ?
+          <PureChart
+            ref={(c) => {
+              if (c) {
+                this.chart = c.getG2Instance();
+              }
+            }}
+            {...this.props}
+          /> :
           <Empty
             width={width}
             height={height}
-            placeholder={placeholder === true ? undefined : placeholder}
+            placeholder={placeholder}
           />
       }
     </div>);

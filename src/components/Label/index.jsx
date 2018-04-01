@@ -6,23 +6,25 @@ import BaseComponent from '../Base';
 import PropTypes from 'prop-types';
 
 export default class Label extends BaseComponent {
-  static contextTypes = {
-    addElement: PropTypes.func,
-    updateElement: PropTypes.func,
-    deleteElement: PropTypes.func,
-    createId: PropTypes.func,
-    getParentInfo: PropTypes.func,
-    getViewId: PropTypes.func,
-  }
+  // 原型链继承
+  // static contextTypes = {
+  //   addElement: PropTypes.func,
+  //   updateElement: PropTypes.func,
+  //   deleteElement: PropTypes.func,
+  //   createId: PropTypes.func,
+  //   getParentInfo: PropTypes.func,
+  //   getViewId: PropTypes.func,
+  // }
 
-  static childContextTypes = {
-    addElement: PropTypes.func,
-    updateElement: PropTypes.func,
-    deleteElement: PropTypes.func,
-    createId: PropTypes.func,
-    getParentInfo: PropTypes.func,
-    getViewId: PropTypes.func,
-  }
+  // 无子代Class，多余
+  // static childContextTypes = {
+  //   addElement: PropTypes.func,
+  //   updateElement: PropTypes.func,
+  //   deleteElement: PropTypes.func,
+  //   createId: PropTypes.func,
+  //   getParentInfo: PropTypes.func,
+  //   getViewId: PropTypes.func,
+  // }
 
   constructor(props) {
     super(props, 'Label');
@@ -36,7 +38,7 @@ export default class Label extends BaseComponent {
 
     this.context.addElement(
       this.name, this.id, this.props,
-      this.context.getParentInfo(),
+      parentInfo,
       this.context.getViewId()
     );
   }
